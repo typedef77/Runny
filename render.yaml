@@ -1,0 +1,18 @@
+# Render Blueprint specification
+# Deploy to Render by connecting this repo and selecting "Blueprint"
+
+services:
+  - type: web
+    name: runny
+    runtime: node
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+    disk:
+      name: runny-data
+      mountPath: /app/data
+      sizeGB: 1
