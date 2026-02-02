@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { initializeDatabase } from './database';
 import authRoutes from './routes/auth';
 import userRoutes from './routes/users';
@@ -24,7 +25,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 // Initialize database
 initializeDatabase();
 
-// Routes
+// API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/goals', goalRoutes);
@@ -37,6 +38,19 @@ app.use('/api/progress', progressRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
+
+// Serve static frontend files in production
+const clientDistPath = path.join(__dirname, '../../client/dist');
+if (fs.existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath));
+
+  // Handle client-side routing - serve index.html for all non-API routes
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(path.join(clientDistPath, 'index.html'));
+    }
+  });
+}
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {

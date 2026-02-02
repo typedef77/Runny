@@ -1,0 +1,21 @@
+{
+  "name": "runny",
+  "version": "1.0.0",
+  "description": "Adaptive Running Training App",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm install && npm run build",
+    "build:server": "cd server && npm install && npm run build",
+    "start": "cd server && npm start",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

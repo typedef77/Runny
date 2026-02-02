@@ -184,5 +184,11 @@ export const demoData = {
 };
 
 export function isDemoMode(): boolean {
-  return import.meta.env.PROD && !import.meta.env.VITE_API_URL;
+  // Demo mode is only for GitHub Pages (static hosting without backend)
+  // Check if we're on github.io domain
+  if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
+    return true;
+  }
+  // Also check for explicit demo mode or missing API URL in dev
+  return import.meta.env.VITE_DEMO_MODE === 'true';
 }

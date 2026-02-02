@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { demoData, isDemoMode } from './demoData';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+// Use relative URL in production (same server serves frontend and API)
+// Use localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? '/api' : 'http://localhost:3001/api');
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -25,7 +28,9 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401 || error.response?.status === 403) {
       localStorage.removeItem('token');
-      window.location.href = '/Runny/login';
+      // Use correct base path depending on deployment
+      const basePath = window.location.hostname.includes('github.io') ? '/Runny' : '';
+      window.location.href = `${basePath}/login`;
     }
     return Promise.reject(error);
   }
