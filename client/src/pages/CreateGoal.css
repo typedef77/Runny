@@ -1,0 +1,157 @@
+.create-goal-page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.create-goal-card {
+  width: 100%;
+  max-width: 600px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.step {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--border);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.step.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+.step-line {
+  width: 60px;
+  height: 2px;
+  background-color: var(--border);
+  margin: 0 0.5rem;
+}
+
+.step-content h2 {
+  margin-bottom: 0.25rem;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.distance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.distance-btn {
+  padding: 1rem;
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.distance-btn:hover {
+  border-color: var(--primary);
+}
+
+.distance-btn.selected {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.experience-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.experience-btn {
+  padding: 1rem;
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.experience-btn:hover {
+  border-color: var(--primary);
+}
+
+.experience-btn.selected {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.experience-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.experience-desc {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.day-btn {
+  padding: 0.75rem 0.5rem;
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.day-btn:hover {
+  border-color: var(--primary);
+}
+
+.day-btn.selected {
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: white;
+}
+
+.step-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.step-buttons .btn {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .days-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
